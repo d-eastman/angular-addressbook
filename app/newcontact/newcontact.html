@@ -1,0 +1,79 @@
+<h1>New Contact</h1>
+
+<div class="container new-customer">
+    <form name="newContactForm" novalidate>
+
+        <fieldset>
+            <div class="row" style="padding: 5px">
+                <div class="col-xs-1">
+                    <label for="name">Name: </label>
+                </div>
+                <div class="col-xs-11">
+                    <input type="text" id="name" name="name" ng-model="newContact.name" required minlength="2"
+                           placeholder="first name + last name"/>
+                    <img src="img/red_thumbs_down.png" height="18px" ng-show="newContactForm.name.$invalid"
+                         style="opacity: 0.5;"/>
+                    <span class="required" style="color: red"
+                          ng-show="newContactForm.name.$error.required">required</span>
+                    <span class="invalid" style="color: red"
+                          ng-show="!newContactForm.name.$error.required && newContactForm.name.$error.minlength">2 chars minimum</span>
+                    <img src="img/green_thumbs_up.png" height="18px" ng-show="newContactForm.name.$valid"
+                         style="opacity: 0.5;"/>
+                </div>
+            </div>
+
+            <div class="row" style="padding: 5px">
+                <div class="col-xs-1">
+                    <label for="phone">Phone: </label>
+                </div>
+                <div class="col-xs-11">
+                    <input type="text" id="phone" name="phone" ng-model="newContact.phone" required
+                           pattern="\d{3}\-\d{3}\-\d{4}" placeholder="xxx-xxx-xxxx"/>
+                    <img src="img/red_thumbs_down.png" height="18px" ng-show="newContactForm.phone.$invalid"
+                         style="opacity: 0.5;"/>
+                    <span class="required" style="color: red"
+                          ng-show="newContactForm.phone.$error.required">required</span>
+                    <span class="invalid" style="color: red"
+                          ng-show="!newContactForm.phone.$error.required && newContactForm.phone.$error.pattern">must be in xxx-xxx-xxxx format</span>
+                    <img src="img/green_thumbs_up.png" height="18px" ng-show="newContactForm.phone.$valid"
+                         style="opacity: 0.5;"/>
+                </div>
+            </div>
+
+            <div class="row" style="padding: 5px">
+                <div class="col-xs-1">
+                    <label for="email">Email: </label>
+                </div>
+                <div class="col-xs-11">
+                    <input type="email" id="email" name="email" ng-model="newContact.email" required
+                           placeholder="you@domain.com"/>
+                    <img src="img/red_thumbs_down.png" height="18px" ng-show="newContactForm.email.$invalid"
+                         style="opacity: 0.5;"/>
+                    <span class="required" style="color: red"
+                          ng-show="newContactForm.email.$error.required">required</span>
+                    <span class="invalid" style="color: red"
+                          ng-show="!newContactForm.email.$error.required && newContactForm.email.$error.email">not a valid email address</span>
+                    <img src="img/green_thumbs_up.png" height="18px" ng-show="newContactForm.email.$valid"
+                         style="opacity: 0.5;" />
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="row">
+            <div class="col-xs-1">
+                &nbsp;
+            </div>
+            <div class="col-xs-1">
+                <button type="submit" ng-click="save()" class="btn btn-primary" ng-disabled="newContactForm.$invalid">
+                    Save
+                </button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" ng-click="cancel()" class="btn btn-default">Cancel</button>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>

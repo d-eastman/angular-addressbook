@@ -1,12 +1,18 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+angular.module('addressBookApp', ['ngRoute']).
+    config(['$routeProvider', function($routeProvider) {
+
+        $routeProvider
+            .when("/contacts", {
+                templateUrl: "contacts/contacts.html",
+                controller: "ContactsController"
+            })
+            .when("/newcontact", {
+                templateUrl: "newcontact/newcontact.html",
+                controller: "NewContactController"
+            })
+            .otherwise({redirectTo: '/contacts'});
+
+
+    }]);
