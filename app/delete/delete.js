@@ -4,6 +4,8 @@ angular.module("addressBookApp")
     .controller("DeleteController", ["$scope", "$location", "$routeParams", "contactsData",
         function ($scope, $location, $routeParams, contactsData) {
 
+            $scope.$emit('bubblePageSubtitle', "Delete Contact");
+
             $scope.deleteContact = angular.copy(contactsData.getContactById($routeParams.id));
 
             $scope.delete = function () {

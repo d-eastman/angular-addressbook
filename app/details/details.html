@@ -1,17 +1,25 @@
-<div class="container">
+<h1 class="page-header" style="top-margin: -10px">Contact Details</h1>
 
-    <h1 class="page-header" style="top-margin: -10px">Contact Details</h1>
+<div class="row contacts-list">
 
-    <div ng-show="contact.id > 0">
-        <contact-detail-display contact="contact"></contact-detail-display>
+    <div class="col-md-4 portfolio-item"
+         style="background-color: #eee; margin: 5px 5px 5px 5px; border-radius: 10px; border: solid thin #999; padding: 5px 5px 5px 5px; text-align: left">
 
-        <icon-link href="#/edit/{{contact.id}}" src="img/edit.png" alt="edit..."></icon-link>
-        <icon-link href="#/delete/{{contact.id}}" src="img/delete.png" alt="delete..."></icon-link>
+        <div ng-show="contact.id > 0" style="margin: 5px 5px 5px 5px">
+            <contact-detail-display contact="contact"></contact-detail-display>
+
+            <br/>
+
+            <div style="display: inline-block; margin: 5px 5px 5px 5px; border: solid thin #999; padding: 5px 5px 5px 5px; border-radius: 10px; background-color: #fff">
+                <icon-link href="#/edit/{{contact.id}}" src="img/edit.png" alt="edit..."></icon-link>
+                <icon-link href="#/delete/{{contact.id}}" src="img/delete.png" alt="delete..."></icon-link>
+            </div>
+
+        </div>
+
+        <div ng-hide="contact.id > 0" style="margin: 5px 5px 5px 5px;">
+            <p style="color: red">Invalid contact id!</p>
+        </div>
 
     </div>
-
-    <div ng-hide="contact.id > 0">
-        <p>Invalid contact id!</p>
-    </div>
-
 </div>

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('addressBookApp', ['ngRoute']).
-    config(['$routeProvider', function($routeProvider) {
+angular.module('addressBookApp', ['ngRoute'])
+    .config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider
             .when("/contacts/:id", {
@@ -24,6 +24,25 @@ angular.module('addressBookApp', ['ngRoute']).
                 templateUrl: "newcontact/newcontact.html",
                 controller: "NewContactController"
             })
+            .when("/about", {
+                templateUrl: "about/about.html",
+                controller: "AboutController"
+            })
             .otherwise({redirectTo: '/contacts'});
 
+    }]);
+
+angular.module('addressBookApp')
+    .controller("IndexController", ["$scope", "$route",
+        function ($scope, $route) {
+
+            $scope.pageSubtitle = "";
+
+            $scope.$on('bubblePageSubtitle', function (e, data) {
+                if (data !== undefined && data !== "") {
+                    $scope.pageSubtitle = " - " + data;
+                } else {
+                    $scope.pageSubtitle = "";
+                }
+            });
     }]);

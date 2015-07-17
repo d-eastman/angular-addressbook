@@ -10,13 +10,8 @@
                     <label for="name">Name: </label>
                 </div>
                 <div class="col-xs-11">
-
-                    <editField>
-
-                    </editField>
-
                     <input type="text" id="name" name="name" ng-model="newContact.name" required minlength="2"
-                           placeholder="first name + last name"/>
+                           placeholder="first name + last name" maxlength="20"/>
                     <img src="img/red_thumbs_down.png" height="18px" ng-show="newContactForm.name.$invalid"
                          style="opacity: 0.5;"/>
                     <span class="required" style="color: red"

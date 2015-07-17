@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module("addressBookApp")
-    .controller("DetailsController", ["$scope", "$routeParams", "contactsData", "$log",
-        function ($scope, $routeParams, contactsData, $log) {
+    .controller("DetailsController", ["$scope", "$routeParams", "contactsData",
+        function ($scope, $routeParams, contactsData) {
 
-            //$log.info($routeParams.id);
+            $scope.$emit('bubblePageSubtitle', "Contact Details");
 
             $scope.contact = contactsData.getContactById($routeParams.id);
 

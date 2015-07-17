@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module("addressBookApp")
-    .controller("EditController", ["$scope", "$location", "$routeParams", "contactsData", "$log",
-        function ($scope, $location, $routeParams, contactsData, $log) {
+    .controller("EditController", ["$scope", "$location", "$routeParams", "contactsData",
+        function ($scope, $location, $routeParams, contactsData) {
+
+            $scope.$emit('bubblePageSubtitle', "Edit Contact");
 
             //It's important to COPY the model or else the cancel event will STILL save the changes!
             $scope.editContact = angular.copy(contactsData.getContactById($routeParams.id));
 
             $scope.save = function () {
-
-                $log.info("save");
 
                 contactsData.saveEditedContact($scope.editContact);
 
@@ -18,8 +18,6 @@ angular.module("addressBookApp")
             }
 
             $scope.cancel = function () {
-
-                $log.info("cancel");
 
                 $location.url("/contacts");
 
