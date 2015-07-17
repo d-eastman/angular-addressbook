@@ -25,7 +25,7 @@ angular.module("addressBookApp")
                 }
             }
 
-            return { id: -1 };
+            return null;
         }
 
         var _addNewContact = function(contact) {
@@ -43,8 +43,20 @@ angular.module("addressBookApp")
         var _saveEditedContact = function(contact) {
             $log.info("_saveEditedContact");
             for(var i = 0; i < _contacts.length; i++) {
-                if (_contacts[i].id = contact.id) {
+                if (_contacts[i].id == contact.id) {
                     _contacts[i] = contact;
+                    return true;
+                }
+            }
+
+            return false;
+        };
+
+        var _deleteContactById = function(id) {
+            $log.info("_deleteContactById");
+            for(var i = 0; i < _contacts.length; i++) {
+                if (_contacts[i].id == id) {
+                    _contacts.splice(i, 1); //Remove that one element
                     return true;
                 }
             }
@@ -68,6 +80,7 @@ angular.module("addressBookApp")
             getAllContacts: _getAllContacts,
             addNewContact: _addNewContact,
             getContactById: _getContactById,
-            saveEditedContact: _saveEditedContact
+            saveEditedContact: _saveEditedContact,
+            deleteContactById: _deleteContactById
         };
     }]);

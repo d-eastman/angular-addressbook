@@ -12,6 +12,10 @@ angular.module('addressBookApp', ['ngRoute']).
                 templateUrl: "edit/edit.html",
                 controller: "EditController"
             })
+            .when("/delete/:id", {
+                templateUrl: "delete/delete.html",
+                controller: "DeleteController"
+            })
             .when("/contacts", {
                 templateUrl: "contacts/contacts.html",
                 controller: "ContactsController"
