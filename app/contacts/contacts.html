@@ -1,27 +1,24 @@
-<h1 class="page-header" style="top-margin: -10px">Contacts</h1>
+<div class="container">
 
-<div class="contacts-list">
+    <h1 class="page-header" style="top-margin: -10px">Contacts</h1>
 
-    <div class="container">
+    <div class="contacts-list">
 
-        <div class="row well" ng-repeat="contact in contacts" style="width: 75%"
-             ng-click="toggleDetailsVisibility(contact)"
-             ng-style="mousePointerStyle" ng-mouseenter="mouseEnter()" ng-mouseleave="mouseLeave()">
+        <div class="well" ng-repeat="contact in contacts" style="width: 90%">
 
-            <div class="contact-name col-md-12 well-title">
-                <img src="img/rolodex_card.jpg" height="20px"/>
-                <strong>{{contact.name}}</strong>
-            </div>
-
-            <div class="contact-details" ng-show="contact.detailsVisible">
-                <div class="col-md-1">&nbsp;</div>
+            <div class="row">
+                <div class="contact-name col-md-4 well-title" style="font-size: 24px">
+                    <strong>{{contact.name}}</strong>
+                </div>
                 <div class="contact-phone col-md-2">Phone: {{contact.phone}}</div>
-                <div class="contact-email col-md-2">Email: {{contact.email}}</div>
+                <div class="contact-email col-md-3">Email: {{contact.email}}</div>
+                <div class="col-md-3">
+                    <a ng-href="#/contacts/{{contact.id}}" style="padding: 0px 5px 0px 5px"><img src="img/ellipsis.png" height="20px" alt="details..." title="details..." /></a>
+                    <a ng-href="#/edit/{{contact.id}}" style="padding: 0px 5px 0px 5px"><img src="img/edit.png" height="20px" alt="edit..." title="edit..." /></a>
+                </div>
             </div>
-
 
         </div>
-
 
     </div>
 

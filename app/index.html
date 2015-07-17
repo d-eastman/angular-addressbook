@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
+    <title>AddressBookJS</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -22,9 +22,16 @@
 <body ng-cloak>
 
 <nav class="navbar navbar-default">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
     <div class="container-fluid">
         <div class="navbar-header" style="padding: 0px 10px 0px 10px">
-            <img src="img/people.png" height="50px"  />
+            <img src="img/people.png" height="50px"/>
         </div>
 
         <div class="navbar-header">
@@ -35,8 +42,10 @@
                 <li><a href="#/contacts">Contacts</a></li>
                 <li><a href="#/newcontact">New Contact</a></li>
             </ul>
-        </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
 </nav>
 
 <!--[if lt IE 7]>
@@ -44,9 +53,8 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div class="container">
-    <div ng-view></div>
-</div>
+<div ng-view></div>
+
 
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -59,6 +67,8 @@
 <script src="data/contactsData.js"></script>
 <script src="contacts/contacts.js"></script>
 <script src="newcontact/newcontact.js"></script>
+<script src="details/details.js"></script>
+<script src="edit/edit.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>

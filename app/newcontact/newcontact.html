@@ -1,6 +1,7 @@
-<h1>New Contact</h1>
-
 <div class="container new-customer">
+
+    <h1 class="page-header" style="top-margin: -10px">New Contact</h1>
+
     <form name="newContactForm" novalidate>
 
         <fieldset>
@@ -28,7 +29,7 @@
                 </div>
                 <div class="col-xs-11">
                     <input type="text" id="phone" name="phone" ng-model="newContact.phone" required
-                           pattern="\d{3}\-\d{3}\-\d{4}" placeholder="xxx-xxx-xxxx"/>
+                           pattern="\d{3}\-\d{3}\-\d{4}" placeholder="xxx-xxx-xxxx" />
                     <img src="img/red_thumbs_down.png" height="18px" ng-show="newContactForm.phone.$invalid"
                          style="opacity: 0.5;"/>
                     <span class="required" style="color: red"
@@ -63,13 +64,11 @@
             <div class="col-xs-1">
                 &nbsp;
             </div>
-            <div class="col-xs-1">
-                <button type="submit" ng-click="save()" class="btn btn-primary" ng-disabled="newContactForm.$invalid">
+            <div class="col-xs-11">
+                <button type="submit" ng-click="save()" class="btn btn-primary" ng-disabled="newContactForm.$invalid" style="margin: 5px">
                     Save
                 </button>
-            </div>
-            <div class="col-xs-1">
-                <button type="button" ng-click="cancel()" class="btn btn-default">Cancel</button>
+                <button type="button" ng-click="cancel()" class="btn btn-default" style="margin: 5px">Cancel</button>
             </div>
         </div>
 

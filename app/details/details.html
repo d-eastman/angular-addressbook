@@ -1,0 +1,25 @@
+<div class="container">
+
+    <h1 class="page-header" style="top-margin: -10px">Contact Details</h1>
+
+    <div ng-show="contact.id > 0">
+        <div class="row">
+            <div class="col-md-12">
+                Name: {{contact.name}}
+            </div>
+            <div class="col-md-12">
+                Phone: {{contact.phone}}
+            </div>
+            <div class="col-md-12">
+                Email: {{contact.email}}
+            </div>
+        </div>
+
+        <a ng-href="#/edit/{{contact.id}}" style="padding: 0px 5px 0px 5px"><img src="img/edit.png" height="20px" alt="edit..." title="edit..." /></a>
+    </div>
+
+    <div ng-hide="contact.id > 0">
+        <p>Invalid contact id!</p>
+    </div>
+
+</div>
