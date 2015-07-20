@@ -16,6 +16,19 @@ angular.module('addressBookApp', ['ngRoute', 'ngResource'])
                 templateUrl: "delete/delete.html",
                 controller: "DeleteController"
             })
+
+            .when("/about", {
+                templateUrl: "about/about.html",
+                controller: "AboutController"
+            })
+            .when("/test/:id", {
+                templateUrl: "test/test.html",
+                controller: "TestController"
+            })
+            .when("/test", {
+                templateUrl: "test/test.html",
+                controller: "TestController"
+            })
             .when("/contacts", {
                 templateUrl: "contacts/contacts.html",
                 controller: "ContactsController"
@@ -23,14 +36,6 @@ angular.module('addressBookApp', ['ngRoute', 'ngResource'])
             .when("/newcontact", {
                 templateUrl: "newcontact/newcontact.html",
                 controller: "NewContactController"
-            })
-            .when("/about", {
-                templateUrl: "about/about.html",
-                controller: "AboutController"
-            })
-            .when("/test", {
-                templateUrl: "test/test.html",
-                controller: "TestController"
             })
             .otherwise({redirectTo: '/contacts'});
 

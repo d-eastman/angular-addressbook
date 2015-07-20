@@ -10,10 +10,13 @@ angular.module("addressBookApp")
 
             $scope.save = function () {
 
-                contactsData.addNewContact($scope.newContact);
-
-                $location.url("/contacts");
-
+                contactsData.addNewContact($scope.newContact)
+                    .success(function () {
+                        $location.url("/contacts");
+                    })
+                    .error(function () {
+                        alert("Failed to save new contact");
+                    });
             };
 
             $scope.cancel = function () {

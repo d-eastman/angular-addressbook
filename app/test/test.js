@@ -1,27 +1,21 @@
 'use strict';
 
 angular.module("addressBookApp")
-/*    .factory('ContactsResource', function($resource) {
+    .controller("TestController", ["$scope", "contactsData", "$routeParams",
+        function ($scope, contactsData, $routeParams) {
 
-        return {
-            getContacts: function() {
-                return $resource('http://localhost:8001/api/contacts', { method: "GET", isArray: true}).get();
-            }
-        };
+            $scope.contact;
+            $scope.status;
 
-    })*/
-
-    .controller("TestController", ["$scope", "$http", "$log",
-        function ($scope, $http, $log) {
-
-            $scope.contacts = $http.get("http://localhost:8001/api/contacts")
-                .success( function(response, status) {
-                    $log.info("success " + status);
-                    $log.info(response);
-                    $scope.contacts = response;
-            }).error(function(data, status) {
-                    $log.error("error " + status);
-            });
+            contactsData.addNewContact(
+                {name: "Bart Simpson 10", phone: "555-555-1111", email: "bart@simpsons.com"}
+            )
+                .success(function(contact) {
+                    $scope.contact = contact;
+                })
+                .error(function(error) {
+                    $scope.status = error.message;
+                })
 
 
         }]);

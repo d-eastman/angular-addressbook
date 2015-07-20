@@ -17,10 +17,12 @@ var router = express.Router();              // get an instance of the express Ro
 
 // middleware to use for all requests - does its thing and then lets process drop through to other routes
 router.use(function (req, res, next) {
-//    res.header("Access-Control-Allow-Origin", "*");
-//    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    // allow cross-port calls
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS, PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     // do logging
-    console.log('Something is happening.');
+    console.log(req.method + " " + req.url);
     next(); // make sure we go to the next routes and don't stop here
 });
 
@@ -30,6 +32,22 @@ router.get('/', function (req, res) {
 });
 
 // more routes for our API will happen here
+router.get("/contacts/:id", function (req, res) {
+    res.json(contactsService.getContactById(req.params.id));
+});
+
+router.delete("/contacts/:id", function(req, res) {
+   res.json(contactsService.deleteContactById(req.params.id));
+});
+
+router.put("/contacts", function(req, res) {
+    res.json(contactsService.saveEditedContact(req.body.contact));
+});
+
+router.post("/contacts", function(req, res) {
+    res.json(contactsService.addNewContact(req.body.contact));
+});
+
 router.get("/contacts", function (req, res) {
     res.json(contactsService.getAllContacts());
 });

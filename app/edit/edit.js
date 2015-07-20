@@ -6,15 +6,25 @@ angular.module("addressBookApp")
 
             $scope.$emit('bubblePageSubtitle', "Edit Contact");
 
-            //It's important to COPY the model or else the cancel event will STILL save the changes!
-            $scope.editContact = angular.copy(contactsData.getContactById($routeParams.id));
+            $scope.editContact;
+
+            contactsData.getContactById($routeParams.id)
+                .success(function (contact) {
+                    $scope.editContact = contact;
+                })
+                .error(function () {
+                    alert("Failed to get contact details");
+                });
 
             $scope.save = function () {
 
-                contactsData.saveEditedContact($scope.editContact);
-
-                $location.url("/contacts");
-
+                contactsData.saveEditedContact($scope.editContact)
+                    .success(function () {
+                        $location.url("/contacts");
+                    })
+                    .error(function () {
+                        alert("Failed to save new contact");
+                    });
             }
 
             $scope.cancel = function () {

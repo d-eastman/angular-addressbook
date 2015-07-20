@@ -6,14 +6,23 @@ angular.module("addressBookApp")
 
             $scope.$emit('bubblePageSubtitle', "Delete Contact");
 
-            $scope.deleteContact = angular.copy(contactsData.getContactById($routeParams.id));
+            contactsData.getContactById($routeParams.id)
+                .success(function (contact) {
+                    $scope.deleteContact = contact;
+                })
+                .error(function () {
+                    alert("Failed to get contact details");
+                });
 
             $scope.delete = function () {
 
-                contactsData.deleteContactById($scope.deleteContact.id);
-
-                $location.url("/contacts");
-
+                contactsData.deleteContactById($scope.deleteContact.id)
+                    .success(function () {
+                        $location.url("/contacts");
+                    })
+                    .error(function () {
+                        alert("Failed to get contact details");
+                    });
             }
 
             $scope.cancel = function () {

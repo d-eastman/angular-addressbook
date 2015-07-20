@@ -3,32 +3,17 @@
 angular.module('addressBookApp')
     .controller("ContactsController", ["$scope", "contactsData", "$log",
         function ($scope, contactsData, $log) {
-            $scope.data = contactsData;
-            $scope.isBusy = false;
 
             $scope.$emit('bubblePageSubtitle', "");
 
-            $log.info("$scope.isBusy: " + $scope.isBusy);
+            $scope.contacts;
 
-            $log.info("contactsData.isReady(): " + contactsData.isReady());
+            contactsData.getAllContacts()
+                .success(function (contacts) {
+                    $scope.contacts = contacts;
+                })
+                .error(function() {
+                    alert("Could not get all contacts!");
+                });
 
-            if (contactsData.isReady() == false) {
-
-                $scope.isBusy = true;
-
-                contactsData.getAllContacts().then(
-                    function () {
-                        //Success, do thing
-                        $log.info("contactsData.getAllContacts() - success");
-                    },
-                    function () {
-                        //Failure
-                        $log.info("contactsData.getAllContacts() - failure");
-                        alert("Could not load contacts");
-                    }).then(
-                        function() {
-                            $log.info("contactsData.getAllContacts() - finally");
-                            $scope.isBusy = false;
-                        });
-            }
         }]);

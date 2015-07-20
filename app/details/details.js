@@ -6,7 +6,15 @@ angular.module("addressBookApp")
 
             $scope.$emit('bubblePageSubtitle', "Contact Details");
 
-            $scope.contact = contactsData.getContactById($routeParams.id);
+            $scope.contact;
+
+            contactsData.getContactById($routeParams.id)
+                .success(function (contact) {
+                    $scope.contact = contact;
+                })
+                .error(function () {
+                    alert("Failed to get contact details");
+                });
 
         }]);
 
