@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('addressBookApp', ['ngRoute'])
-    .config(['$routeProvider', function ($routeProvider) {
+angular.module('addressBookApp', ['ngRoute', 'ngResource'])
+    .config(['$routeProvider', '$sceDelegateProvider', function ($routeProvider, $sceDelegateProvider) {
 
         $routeProvider
             .when("/contacts/:id", {
@@ -28,13 +28,23 @@ angular.module('addressBookApp', ['ngRoute'])
                 templateUrl: "about/about.html",
                 controller: "AboutController"
             })
+            .when("/test", {
+                templateUrl: "test/test.html",
+                controller: "TestController"
+            })
             .otherwise({redirectTo: '/contacts'});
 
+//        $sceDelegateProvider.resourceUrlWhitelist([
+//            // Allow same origin resource loads.
+//            'self',
+//            // Allow loading from our assets domain.  Notice the difference between * and **.
+//            'http://localhost:8001/**'
+//        ]);
     }]);
 
 angular.module('addressBookApp')
-    .controller("IndexController", ["$scope", "$route",
-        function ($scope, $route) {
+    .controller("IndexController", ["$scope",
+        function ($scope) {
 
             $scope.pageSubtitle = "";
 
