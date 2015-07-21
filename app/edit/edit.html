@@ -5,7 +5,7 @@
     <div class="col-md-6 portfolio-item"
          style="background-color: #eee; margin: 5px 5px 5px 5px; border-radius: 10px; border: solid thin #999; padding: 5px 5px 5px 5px; text-align: left">
 
-        <div ng-show="editContact.id > 0">
+        <div ng-show="contact.id !== ''">
 
             <form name="editContactForm">
                 <fieldset>
@@ -75,7 +75,7 @@
             </form>
         </div>
 
-        <div ng-hide="editContact.id > 0">
+        <div ng-hide="contact.id !== ''">
             <p>Invalid contact id!</p>
         </div>
 
