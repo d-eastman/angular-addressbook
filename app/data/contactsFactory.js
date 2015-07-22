@@ -1,8 +1,9 @@
 angular.module("addressBookApp")
-  .factory("contactsData", ["$log", "$http", "$q",
+  .factory("contactsFactory", ["$log", "$http", "$q",
     function($log, $http, $q) {
 
       'use strict';
+
       var urlBase = 'http://localhost:8001/api/contacts';
 
       return {

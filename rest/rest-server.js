@@ -73,7 +73,6 @@ router.post("/contacts", function(req, res) {
 
 router.get("/contacts", function(req, res) {
   contactsService.getAllContacts(function(contacts) {
-    console.log("Returning " + contacts.length + " contacts");
     res.json(contacts);
   });
 });

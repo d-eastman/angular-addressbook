@@ -1,20 +1,19 @@
 angular.module("addressBookApp")
-  .controller("DetailsController", ["$scope", "$routeParams", "contactsData",
-    function($scope, $routeParams, contactsData) {
+  .controller("DetailsController", ["$scope", "$routeParams", "contactsFactory",
+    function($scope, $routeParams, contactsFactory) {
 
       'use strict';
 
       $scope.$emit('bubblePageSubtitle', "Contact Details");
 
-      $scope.contact = {};
+      $scope.contact = null;
 
-      contactsData.getContactById($routeParams.id)
-        .success(function(contact) {
-          $scope.contact = contact;
-        })
-        .error(function() {
-          alert("Failed to get contact details");
-        });
-
+      contactsFactory.getContactById($routeParams.id)
+        .then(function(response) {
+            $scope.contact = response.data;
+          },
+          function() {
+            alert("Failed to get contact details");
+          });
     }
   ]);

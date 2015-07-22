@@ -1,20 +1,21 @@
 angular.module('addressBookApp')
-  .controller("ContactsController", ["$scope", "contactsData", "$log",
-    function($scope, contactsData, $log) {
+  .controller("ContactsController", ["$scope", "contactsFactory", "$log",
+    function($scope, contactsFactory, $log) {
 
       'use strict';
 
       $scope.$emit('bubblePageSubtitle', "");
 
-      $scope.contacts = [];
+      $scope.contacts = null;
 
-      contactsData.getAllContacts()
-        .success(function(contacts) {
-          $scope.contacts = contacts;
-        })
-        .error(function() {
-          alert("Could not get all contacts!");
-        });
+      contactsFactory.getAllContacts()
+        .then(function(response) {
+            console.info(response);
+            $scope.contacts = response.data;
+          },
+          function() {
+            alert("Could not get all contacts!");
+          });
 
     }
   ]);

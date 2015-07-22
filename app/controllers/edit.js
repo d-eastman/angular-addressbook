@@ -1,6 +1,6 @@
 angular.module("addressBookApp")
-  .controller("EditController", ["$scope", "$location", "$routeParams", "contactsData",
-    function($scope, $location, $routeParams, contactsData) {
+  .controller("EditController", ["$scope", "$location", "$routeParams", "contactsFactory",
+    function($scope, $location, $routeParams, contactsFactory) {
 
       'use strict';
 
@@ -8,7 +8,7 @@ angular.module("addressBookApp")
 
       $scope.editContact = {};
 
-      contactsData.getContactById($routeParams.id)
+      contactsFactory.getContactById($routeParams.id)
         .success(function(contact) {
           $scope.editContact = contact;
         })
@@ -18,7 +18,7 @@ angular.module("addressBookApp")
 
       $scope.save = function() {
 
-        contactsData.saveEditedContact($scope.editContact)
+        contactsFactory.saveEditedContact($scope.editContact)
           .success(function() {
             $location.url("/contacts");
           })
