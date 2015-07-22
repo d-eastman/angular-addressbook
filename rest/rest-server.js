@@ -48,28 +48,24 @@ router.get("/nukecontacts/:secretCode", function(req, res) {
 });
 
 router.get("/contacts/:id", function(req, res) {
-  //res.json(contactsService.getContactById(req.params.id));
   contactsService.getContactById(req.params.id, function(contact) {
     res.json(contact);
   });
 });
 
 router.delete("/contacts/:id", function(req, res) {
-  //res.json(contactsService.deleteContactById(req.params.id));
   contactsService.deleteContactById(req.params.id, function() {
-      res.json("deleted");
+    res.json("deleted");
   });
 });
 
 router.put("/contacts", function(req, res) {
-  //res.json(contactsService.saveEditedContact(req.body.contact));
   contactsService.saveEditedContact(req.body.contact, function(contact) {
     res.json(contact);
   });
 });
 
 router.post("/contacts", function(req, res) {
-  //res.json(contactsService.addNewContact(req.body.contact));
   contactsService.addNewContact(req.body.contact, function(contacts) {
     res.json(contacts);
   });
