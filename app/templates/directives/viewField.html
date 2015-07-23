@@ -1,1 +1,4 @@
-<span class="view-field"><strong>{{fieldName}}:</strong> {{fieldValue}}</span>
+<span class="view-field">
+  <span ng-if="fieldName.toUpperCase()==='PHONE'"><strong>{{fieldName}}:</strong> {{fieldValue | phoneNumber}}</span>
+  <span ng-if="fieldName.toUpperCase() !== 'PHONE'"><strong>{{fieldName}}:</strong> {{fieldValue}}</span>
+</span>

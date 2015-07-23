@@ -11,22 +11,29 @@ module.exports = function(config) {
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
-      "../node_modules/sinon/**/*.js",
+      "node_modules/sinon/lib/sinon.js",
       'app/app.js',
       'app/controllers/*.js',
       'app/factories/*.js',
       'app/directives/*.js',
       'app/filters/*.js',
-      'spec/*.js',
       "app/templates/*.html",
-      "app/templates/directives/*.html"
+      "app/templates/directives/*.html",
+      'app/img/*.*',
+      'spec/*.js'
     ],
+
+//    proxies: {
+//      '/base/app/templates/img/': 'app/img/'
+//    },
 
     autoWatch: true,
 
     frameworks: ['jasmine'],
 
     browsers: ['Chrome'],
+
+    reporters: ['progress'],
 
     plugins: [
       'karma-chrome-launcher',

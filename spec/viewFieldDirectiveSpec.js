@@ -24,7 +24,7 @@ describe("viewField Directive", function() {
     el = angular.element('<view-field field-name="name" field-value="contact.name" />');
     $compile(el)(scope);
     scope.$digest();
-    console.log("viewField is rendering as: " + el[0].outerHTML);
+    //console.log("viewField is rendering as: " + el[0].outerHTML);
   }));
 
   it("should bind the data", function() {

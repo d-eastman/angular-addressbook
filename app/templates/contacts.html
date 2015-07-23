@@ -1,13 +1,16 @@
-<div class="row">
-  <div class="col-lg-12">
-    <h1 class="page-header">Contacts
-    </h1>
-  </div>
-</div>
+<div class="contacts-template">
 
-<div class="row contacts-list">
-  <div class="col-xs-5 col-sm-3 col-md-3 col-lg-2 portfolio-item contactTileList"
-    ng-repeat="contact in contacts | orderBy: 'name'">
-    <contact-tile contact="contact"></contact-tile>
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Contacts
+      </h1>
+    </div>
   </div>
+
+  <div class="row contacts-list">
+    <div class="col-xs-5 col-sm-3 col-md-3 col-lg-2 portfolio-item contactTileList" ng-repeat="contact in contacts | orderBy: 'name'">
+      <contact-tile contact="contact"></contact-tile>
+    </div>
+  </div>
+
 </div>

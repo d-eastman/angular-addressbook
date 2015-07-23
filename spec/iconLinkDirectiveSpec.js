@@ -17,13 +17,14 @@ describe("iconLink Directive", function() {
     el = angular.element('<icon-link href="larry" src="curly" alt="moe" />');
     $compile(el)(scope);
     scope.$digest();
-    console.log("iconLink is rendering as: " + el[0].outerHTML);
+    //console.log("iconLink is rendering as: " + el[0].outerHTML);
   }));
 
   it("should bind the data", function() {
-    expect(el[0].outerHTML).toContain("larry");
-    expect(el[0].outerHTML).toContain("curly");
-    expect(el[0].outerHTML).toContain("moe");
+    expect(el[0].outerHTML).toContain("href=\"larry\"");
+    expect(el[0].outerHTML).toContain("src=\"curly\"");
+    expect(el[0].outerHTML).toContain("alt=\"moe\"");
+    expect(el[0].outerHTML).toContain("title=\"moe\"");
   });
 
 });
