@@ -1,0 +1,64 @@
+<div class="groups-template">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Groups
+      </h1>
+    </div>
+  </div>
+
+  <div class="row groups-list">
+    <div class="col-xs-5 col-sm-3 col-md-3 col-lg-2 portfolio-item groupTileList" ng-repeat="group in groups | orderBy: 'name'">
+      <group-tile group="group"></group-tile>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="new-group-open-modal-button">
+    <button class="btn btn-info" data-target="#modalNewGroup" data-toggle="modal" type="button">Add New Group</button>
+  </div>
+  <div class="modal fade" id="modalNewGroup" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+<!--div class="modal-header">
+          <button class="close" data-dismiss="modal" type="button">&times;</button>
+          <h4 class="modal-title">New Group</h4>
+        </div-->
+        <div class="modal-body">
+          <h2>New Group</h2>
+          <div class="new-group-form">
+            <form name="newGroupForm" novalidate>
+              <fieldset>
+                <div class="row" style="padding: 5px">
+                  <div class="col-xs-1">
+                    <label for="name">Name:
+                    </label>
+                  </div>
+                  <div class="col-xs-11">
+                    <input  id="name" maxlength="20" minlength="2" name="name" ng-model="newGroup.name" placeholder="group name" required type="text"/>
+                    <img  height="18px" ng-show="newGroupForm.name.$invalid" src="img/red_thumbs_down.png" style="opacity: 0.5;"/>
+                    <span class="required" ng-show="newGroupForm.name.$error.required" style="color: red">required</span>
+                    <span class="invalid" ng-show="!newGroupForm.name.$error.required && newGroupForm.name.$error.minlength" style="color: red">2 chars minimum</span>
+                    <img  height="18px" ng-show="newGroupForm.name.$valid" src="img/green_thumbs_up.png" style="opacity: 0.5;"/>
+                  </div>
+                </div>
+              </fieldset>
+              <div class="row">
+                <div class="col-xs-1">
+                  &nbsp;
+                </div>
+                <div class="col-xs-11">
+                  <button class="btn btn-primary" data-dismiss="modal" ng-click="save()" ng-disabled="newGroupForm.$invalid" style="margin: 5px" type="submit">
+                    Save
+                  </button>
+                  <button class="btn btn-default" data-dismiss="modal" style="margin: 5px" type="button">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

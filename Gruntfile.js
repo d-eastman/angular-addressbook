@@ -22,7 +22,13 @@ module.exports = function(grunt) {
       },
 
       // when this task is run, lint the Gruntfile and all js files in src
-      build: ['Gruntfile.js', 'app/app.js', 'app/controllers/*.js', 'app/directives/*.js']
+      build: ['Gruntfile.js',
+        'app/app.js',
+        'app/factories/*.js',
+        'app/filters/*.js',
+        'app/controllers/*.js',
+        'app/directives/*.js'
+      ]
     }
 
 

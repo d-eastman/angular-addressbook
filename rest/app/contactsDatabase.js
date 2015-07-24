@@ -1,16 +1,5 @@
 "use strict";
 
-var mongoose = require("mongoose");
-var dbUrl = "mongodb://localhost:27017/test";
-
-var contactSchema = mongoose.Schema({
-  name: String,
-  phone: String,
-  email: String
-});
-
-var Contact = mongoose.model("Contact", contactSchema);
-
 module.exports = {
 
   getAllContacts: function(callback) {
@@ -67,8 +56,46 @@ module.exports = {
       console.log("Mongoose nuked contacts");
       return callback();
     });
+  },
+  getAllGroups: function(callback) {
+    var db = mongoose.connect(dbUrl);
+    Group.find().lean().exec(function(err, groups) {
+      db.disconnect();
+      console.log("Mongoose returning " + groups.length + " groups");
+      array_idToId(groups);
+      return callback(groups);
+    });
+  },
+  addNewGroup: function(group, callback) {
+    var db = mongoose.connect(dbUrl);
+    var groupDoc = new Group(group);
+    groupDoc.save(function(err, data) {
+      db.disconnect();
+      console.log("Mongoose added new group");
+      singleObject_idToId(data);
+      return callback(data);
+    });
   }
 };
+
+//Private functionality and data
+var mongoose = require("mongoose");
+var dbUrl = "mongodb://localhost:27017/test";
+
+var groupSchema = mongoose.Schema({
+  name: String
+});
+
+var Group = mongoose.model("Group", groupSchema);
+
+var contactSchema = mongoose.Schema({
+  name: String,
+  phone: String,
+  email: String,
+  groupName: String
+});
+
+var Contact = mongoose.model("Contact", contactSchema);
 
 var singleObject_idToId = function(jsonObject) {
   jsonObject.id = jsonObject._id;

@@ -37,5 +37,17 @@ module.exports = {
         console.log("Data service updated edited contact");
         return callback(contact);
       });
+    },
+    getAllGroups: function(callback) {
+      db.getAllGroups(function(groups) {
+        console.log("Data service returning " + groups.length + " groups");
+        return callback(groups);
+      });
+    },
+    addNewGroup: function(group, callback) {
+      db.addNewGroup(group, function(response) {
+        console.log("Data service added new group");
+        return callback(response);
+      });
     }
 };

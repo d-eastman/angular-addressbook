@@ -10,7 +10,6 @@ angular.module('addressBookApp')
 
       contactsFactory.getAllContacts()
         .then(function(response) {
-            console.info(response);
             $scope.contacts = response.data;
           },
           function() {

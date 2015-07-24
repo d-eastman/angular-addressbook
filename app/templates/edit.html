@@ -1,83 +1,70 @@
-<h1 class="page-header" style="top-margin: -10px">Edit Contact</h1>
+<div class="edit-template">
 
-<div class="row contacts-list">
+  <h1 class="page-header" style="top-margin: -10px">Edit Contact</h1>
 
-    <div class="col-md-6 portfolio-item"
-         style="background-color: #eee; margin: 5px 5px 5px 5px; border-radius: 10px; border: solid thin #999; padding: 5px 5px 5px 5px; text-align: left">
+  <div class="row contacts-list">
 
-        <div ng-show="contact.id !== ''">
+    <div class="col-md-6 portfolio-item" style="background-color: #eee; margin: 5px 5px 5px 5px; border-radius: 10px; border: solid thin #999; padding: 5px 5px 5px 5px; text-align: left">
 
-            <form name="editContactForm">
-                <fieldset>
-                    <div class="row" style="padding: 5px">
-                        <div class="col-xs-12">
-                            <label for="name">Name: </label>
-                            <input type="text" id="name" name="name" ng-model="editContact.name" required minlength="2"
-                                   placeholder="first name + last name" maxlength="20"/>
-                            <img src="img/red_thumbs_down.png" height="18px" ng-show="editContactForm.name.$invalid"
-                                 style="opacity: 0.5;"/>
-                            <span class="required" style="color: red"
-                                ng-show="editContactForm.name.$error.required">required</span>
-                            <span class="invalid" style="color: red"
-                                ng-show="!editContactForm.name.$error.required && editContactForm.name.$error.minlength">2 chars minimum</span>
-                            <img src="img/green_thumbs_up.png" height="18px" ng-show="editContactForm.name.$valid"
-                                 style="opacity: 0.5;"/>
-                        </div>
-                    </div>
+      <div ng-show="contact.id !== ''">
 
-                    <div class="row" style="padding: 5px">
-                        <div class="col-xs-12">
-                            <label for="phone">Phone: </label>
-                            <input type="text" id="phone" name="phone" ng-model="editContact.phone" required
-                                   pattern="\d{3}\-\d{3}\-\d{4}" placeholder="xxx-xxx-xxxx"/>
-                            <img src="img/red_thumbs_down.png" height="18px" ng-show="editContactForm.phone.$invalid"
-                                 style="opacity: 0.5;"/>
-                            <span class="required" style="color: red"
-                                  ng-show="editContactForm.phone.$error.required">required</span>
-                            <span class="invalid" style="color: red"
-                                  ng-show="!editContactForm.phone.$error.required && editContactForm.phone.$error.pattern">must be in xxx-xxx-xxxx format</span>
-                            <img src="img/green_thumbs_up.png" height="18px" ng-show="editContactForm.phone.$valid"
-                                 style="opacity: 0.5;"/>
-                        </div>
-                    </div>
+        <form name="editContactForm">
+          <fieldset>
+            <div class="row" style="padding: 5px">
+              <div class="col-xs-12">
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name" ng-model="editContact.name" required minlength="2" placeholder="first name + last name" maxlength="20" />
+                <img src="img/red_thumbs_down.png" height="18px" ng-show="editContactForm.name.$invalid" style="opacity: 0.5;" />
+                <span class="required" style="color: red" ng-show="editContactForm.name.$error.required">required</span>
+                <span class="invalid" style="color: red" ng-show="!editContactForm.name.$error.required && editContactForm.name.$error.minlength">2 chars minimum</span>
+                <img src="img/green_thumbs_up.png" height="18px" ng-show="editContactForm.name.$valid" style="opacity: 0.5;" />
+              </div>
+            </div>
 
-                    <div class="row" style="padding: 5px">
-                        <div class="col-xs-12">
-                            <label for="email">Email: </label>
-                            <input type="email" id="email" name="email" ng-model="editContact.email" required
-                                   placeholder="you@domain.com"/>
-                            <img src="img/red_thumbs_down.png" height="18px" ng-show="editContactForm.email.$invalid"
-                                 style="opacity: 0.5;"/>
-                            <span class="required" style="color: red"
-                                  ng-show="editContactForm.email.$error.required">required</span>
-                            <span class="invalid" style="color: red"
-                                  ng-show="!editContactForm.email.$error.required && editContactForm.email.$error.email">not a valid email address</span>
-                            <img src="img/green_thumbs_up.png" height="18px" ng-show="editContactForm.email.$valid"
-                                 style="opacity: 0.5;"/>
-                        </div>
-                    </div>
-                </fieldset>
-                <br/>
+            <div class="row" style="padding: 5px">
+              <div class="col-xs-12">
+                <label for="phone">Phone: </label>
+                <input type="text" id="phone" name="phone" ng-model="editContact.phone" required pattern="\d{3}\-\d{3}\-\d{4}" placeholder="xxx-xxx-xxxx" />
+                <img src="img/red_thumbs_down.png" height="18px" ng-show="editContactForm.phone.$invalid" style="opacity: 0.5;" />
+                <span class="required" style="color: red" ng-show="editContactForm.phone.$error.required">required</span>
+                <span class="invalid" style="color: red" ng-show="!editContactForm.phone.$error.required && editContactForm.phone.$error.pattern">must be in xxx-xxx-xxxx format</span>
+                <img src="img/green_thumbs_up.png" height="18px" ng-show="editContactForm.phone.$valid" style="opacity: 0.5;" />
+              </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-xs-1">
-                        &nbsp;
-                    </div>
-                    <div class="col-xs-11">
-                        <button type="submit" ng-click="save()" class="btn btn-primary"
-                                ng-disabled="editContactForm.$invalid" style="margin: 5px">
-                            Save
-                        </button>
-                        <button type="button" ng-click="cancel()" class="btn btn-default" style="margin: 5px">Cancel
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+            <div class="row" style="padding: 5px">
+              <div class="col-xs-12">
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email" ng-model="editContact.email" required placeholder="you@domain.com" />
+                <img src="img/red_thumbs_down.png" height="18px" ng-show="editContactForm.email.$invalid" style="opacity: 0.5;" />
+                <span class="required" style="color: red" ng-show="editContactForm.email.$error.required">required</span>
+                <span class="invalid" style="color: red" ng-show="!editContactForm.email.$error.required && editContactForm.email.$error.email">not a valid email address</span>
+                <img src="img/green_thumbs_up.png" height="18px" ng-show="editContactForm.email.$valid" style="opacity: 0.5;" />
+              </div>
+            </div>
+          </fieldset>
+          <br/>
 
-        <div ng-hide="contact.id !== ''">
-            <p>Invalid contact id!</p>
-        </div>
+          <div class="row">
+            <div class="col-xs-1">
+              &nbsp;
+            </div>
+            <div class="col-xs-11">
+              <button type="submit" ng-click="save()" class="btn btn-primary" ng-disabled="editContactForm.$invalid" style="margin: 5px">
+                Save
+              </button>
+              <button type="button" ng-click="cancel()" class="btn btn-default" style="margin: 5px">Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div ng-hide="contact.id !== ''">
+        <p>Invalid contact id!</p>
+      </div>
 
     </div>
+  </div>
+
 </div>

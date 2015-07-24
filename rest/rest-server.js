@@ -66,8 +66,8 @@ router.put("/contacts", function(req, res) {
 });
 
 router.post("/contacts", function(req, res) {
-  contactsService.addNewContact(req.body.contact, function(contacts) {
-    res.json(contacts);
+  contactsService.addNewContact(req.body.contact, function(contact) {
+    res.json(contact);
   });
 });
 
@@ -76,6 +76,19 @@ router.get("/contacts", function(req, res) {
     res.json(contacts);
   });
 });
+
+router.post("/groups", function(req, res) {
+  contactsService.addNewGroup(req.body.group, function(group) {
+    res.json(group);
+  });
+});
+
+router.get("/groups", function(req, res) {
+  contactsService.getAllGroups(function(groups) {
+    res.json(groups);
+  });
+});
+
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api

@@ -4,6 +4,18 @@ angular.module('addressBookApp', ['ngRoute'])
     'use strict';
 
     $routeProvider
+      .when("/contacts/new", {
+        templateUrl: "templates/newcontact.html",
+        controller: "NewContactController"
+      })
+      .when("/contacts/edit/:id", {
+        templateUrl: "templates/edit.html",
+        controller: "EditController"
+      })
+      .when("/contacts/delete/:id", {
+        templateUrl: "templates/delete.html",
+        controller: "DeleteController"
+      })
       .when("/contacts/:id", {
         templateUrl: "templates/details.html",
         controller: "DetailsController"
@@ -27,6 +39,14 @@ angular.module('addressBookApp', ['ngRoute'])
       .when("/newcontact", {
         templateUrl: "templates/newcontact.html",
         controller: "NewContactController"
+      })
+      .when("/groups/:id", {
+        templateUrl: "templates/groupDetails.html",
+        controller: "GroupDetailsController"
+      })
+      .when("/groups", {
+        templateUrl: "templates/groups.html",
+        controller: "GroupsController"
       })
       .otherwise({
         redirectTo: '/contacts'
