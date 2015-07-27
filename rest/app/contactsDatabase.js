@@ -11,6 +11,15 @@ module.exports = {
       return callback(contacts);
     });
   },
+  getContactById: function(id, callback) {
+    var db = mongoose.connect(dbUrl);
+    Contact.findById(id).lean().exec(function(err, contact) {
+      db.disconnect();
+      singleObject_idToId(contact);
+      console.log("Mongoose found contact by id");
+      return callback(contact);
+    });
+  },
   addNewContact: function(contact, callback) {
     var db = mongoose.connect(dbUrl);
     var contactDoc = new Contact(contact);
@@ -21,20 +30,11 @@ module.exports = {
       return callback(data);
     });
   },
-  getContactById: function(id, callback) {
-    var db = mongoose.connect(dbUrl);
-    Contact.findById(id).lean().exec(function(err, contact) {
-      db.disconnect();
-      singleObject_idToId(contact);
-      console.log("Mongoose found contact by id");
-      return callback(contact);
-    });
-  },
   deleteContactById: function(id, callback) {
     var db = mongoose.connect(dbUrl);
     Contact.findByIdAndRemove(id, function(err) {
       db.disconnect();
-      console.log("Mongoose removed by id");
+      console.log("Mongoose removed contract by id");
       return callback();
     });
   },
@@ -45,7 +45,7 @@ module.exports = {
     var contactDoc = new Contact(contact);
     Contact.findByIdAndUpdate(contactDoc._id, contactDoc).lean().exec(function(err, contact) {
       db.disconnect();
-      console.log("Mongoose updated by id");
+      console.log("Mongoose updated contact by id");
       return callback(contact);
     });
   },
@@ -66,6 +66,15 @@ module.exports = {
       return callback(groups);
     });
   },
+  getGroupById: function(id, callback) {
+    var db = mongoose.connect(dbUrl);
+    Group.findById(id).lean().exec(function(err, group) {
+      db.disconnect();
+      singleObject_idToId(group);
+      console.log("Mongoose found group by id");
+      return callback(group);
+    });
+  },
   addNewGroup: function(group, callback) {
     var db = mongoose.connect(dbUrl);
     var groupDoc = new Group(group);
@@ -74,6 +83,44 @@ module.exports = {
       console.log("Mongoose added new group");
       singleObject_idToId(data);
       return callback(data);
+    });
+  },
+  deleteGroupById: function(id, callback) {
+    var db = mongoose.connect(dbUrl);
+    Group.findByIdAndRemove(id, function(err) {
+      db.disconnect();
+      console.log("Mongoose removed group by id");
+      return callback();
+    });
+  },
+  saveEditedGroup: function(group, callback) {
+    var db = mongoose.connect(dbUrl);
+    group._id = group.id;
+    delete group.id;
+    var groupDoc = new Group(group);
+    Group.findByIdAndUpdate(groupDoc._id, groupDoc).lean().exec(function(err, group) {
+      db.disconnect();
+      console.log("Mongoose updated group by id");
+      return callback(group);
+    });
+  },
+  nukeGroups: function(callback) {
+    var db = mongoose.connect(dbUrl);
+    Group.remove({}).exec(function(err) {
+      db.disconnect();
+      console.log("Mongoose nuked groups");
+      return callback();
+    });
+  },
+  getContactsByGroupName: function(groupName, callback) {
+    var db = mongoose.connect(dbUrl);
+    Contact.find({
+      groupName: groupName
+    }).lean().exec(function(err, contacts) {
+      db.disconnect();
+      console.log("Mongoose returning " + contacts.length + " contacts in group '" + groupName + "'");
+      array_idToId(contacts);
+      return callback(contacts);
     });
   }
 };

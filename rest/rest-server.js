@@ -40,10 +40,20 @@ router.get('/', function(req, res) {
 router.get("/nukecontacts/:secretCode", function(req, res) {
   if (req.params.secretCode !== undefined && req.params.secretCode === "secretNuclearLaunchCode") {
     contactsService.nukeContacts(function() {
-      res.json("nuked!");
+      res.json("contacts nuked!");
     });
   } else {
-    res.json("oops, failed to nuke!")
+    res.json("oops, failed to nuke contacts!")
+  }
+});
+
+router.get("/nukegroups/:secretCode", function(req, res) {
+  if (req.params.secretCode !== undefined && req.params.secretCode === "secretNuclearLaunchCode") {
+    contactsService.nukeGroups(function() {
+      res.json("groups nuked!");
+    });
+  } else {
+    res.json("oops, failed to nuke groups!")
   }
 });
 
@@ -53,9 +63,27 @@ router.get("/contacts/:id", function(req, res) {
   });
 });
 
+router.get("/groups/:id", function(req, res) {
+  contactsService.getGroupById(req.params.id, function(group) {
+    res.json(group);
+  });
+});
+
 router.delete("/contacts/:id", function(req, res) {
   contactsService.deleteContactById(req.params.id, function() {
-    res.json("deleted");
+    res.json("deleted contact");
+  });
+});
+
+router.get("/contacts/group/:groupName", function(req, res) {
+  contactsService.getContactsByGroupName(req.params.groupName, function(contacts) {
+    res.json(contacts);
+  });
+});
+
+router.delete("/groups/:id", function(req, res) {
+  contactsService.deleteGroupById(req.params.id, function() {
+    res.json("deleted group");
   });
 });
 
@@ -65,21 +93,27 @@ router.put("/contacts", function(req, res) {
   });
 });
 
+router.put("/groups", function(req, res) {
+  contactsService.saveEditedGroup(req.body.group, function(group) {
+    res.json(group);
+  });
+});
+
 router.post("/contacts", function(req, res) {
   contactsService.addNewContact(req.body.contact, function(contact) {
     res.json(contact);
   });
 });
 
-router.get("/contacts", function(req, res) {
-  contactsService.getAllContacts(function(contacts) {
-    res.json(contacts);
-  });
-});
-
 router.post("/groups", function(req, res) {
   contactsService.addNewGroup(req.body.group, function(group) {
     res.json(group);
+  });
+});
+
+router.get("/contacts", function(req, res) {
+  contactsService.getAllContacts(function(contacts) {
+    res.json(contacts);
   });
 });
 

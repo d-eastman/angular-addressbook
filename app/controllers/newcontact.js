@@ -8,6 +8,16 @@ angular.module("addressBookApp")
 
       $scope.newContact = null;
 
+      $scope.groups = null;
+
+      contactsFactory.getAllGroups()
+        .then(function(response) {
+            $scope.groups = response.data;
+          },
+          function() {
+            alert("Failed to load groups")
+          });
+
       $scope.save = function() {
         contactsFactory.addNewContact($scope.newContact)
           .then(function() {

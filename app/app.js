@@ -40,7 +40,7 @@ angular.module('addressBookApp', ['ngRoute'])
         templateUrl: "templates/newcontact.html",
         controller: "NewContactController"
       })
-      .when("/groups/:id", {
+      .when("/groups/:groupName", {
         templateUrl: "templates/groupDetails.html",
         controller: "GroupDetailsController"
       })

@@ -29,16 +29,24 @@ angular.module("addressBookApp")
         getAllGroups: function() {
           return $http.get(urlBase + "groups");
         },
+        getGroupById: function(id) {
+          return $http.get(urlBase + "groups/" + id);
+        },
         addNewGroup: function(group) {
           return $http.post(urlBase + "groups", {
             group: group
           });
         },
-        getGroupById: function(id) {
-          return $http.get(urlBase + "groups/" + id);
+        deleteGroupById: function(id) {
+          return $http.delete(urlBase + "groups/" + id);
         },
-        getContactsByGroupId: function(id) {
-          return $http.get(urlBase + "groups/" + id + "/contacts");
+        saveEditedGroup: function(group) {
+          return $http.put(urlBase + "groups", {
+            group: group
+          }); //Group data must be wrapped as contact value
+        },
+        getContactsByGroupName: function(groupName) {
+          return $http.get(urlBase + "contacts/group/" + groupName);
         }
       };
     }

@@ -8,12 +8,22 @@ angular.module("addressBookApp")
 
       $scope.editContact = {};
 
-      contactsFactory.getContactById($routeParams.id)
-        .success(function(contact) {
-          $scope.editContact = contact;
-        })
-        .error(function() {
-          alert("Failed to get contact details");
+      $scope.groups = null;
+
+      contactsFactory.getAllGroups()
+        .then(function(response) {
+            $scope.groups = response.data;
+          },
+          function() {
+            alert("Failed to load groups")
+          }).then(function() {
+          contactsFactory.getContactById($routeParams.id)
+            .success(function(contact) {
+              $scope.editContact = contact;
+            })
+            .error(function() {
+              alert("Failed to get contact details");
+            });
         });
 
       $scope.save = function() {

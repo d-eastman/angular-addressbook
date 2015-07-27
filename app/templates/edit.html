@@ -42,6 +42,21 @@
                 <img src="img/green_thumbs_up.png" height="18px" ng-show="editContactForm.email.$valid" style="opacity: 0.5;" />
               </div>
             </div>
+
+            <div class="row" style="padding: 5px">
+              <div class="col-xs-1">
+                <label for="groupName">Group:
+                </label>
+              </div>
+              <div class="col-xs-11">
+                <select id="groupName" name="groupName" ng-model="editContact.groupName" required>
+                  <option ng-repeat="group in groups" value="{{group.name}}">{{group.name}}</option>
+                </select>
+                <img  height="18px" ng-show="editContactForm.groupName.$invalid" src="img/red_thumbs_down.png" style="opacity: 0.5;"/>
+                <span class="required" ng-show="editContactForm.groupName.$error.required" style="color: red">required</span>
+                <img  height="18px" ng-show="editContactForm.groupName.$valid" src="img/green_thumbs_up.png" style="opacity: 0.5;"/>
+              </div>
+            </div>
           </fieldset>
           <br/>
 

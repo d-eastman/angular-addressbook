@@ -1,12 +1,16 @@
 <div class="group-details-template">
 
-  <h1 class="page-header" style="top-margin: -10px">Group Details</h1>
+  <h1 class="page-header" style="top-margin: -10px">{{groupName}}
+    Group Contacts</h1>
 
-  <div class="row group-contacts-list">
-
-    <div class="col-md-4 portfolio-item" style="background-color: #eee; margin: 5px 5px 5px 5px; border-radius: 10px; border: solid thin #999; padding: 5px 5px 5px 5px; text-align: left">
-      details here...
+  <div class="row contacts-list">
+    <div class="col-xs-5 col-sm-3 col-md-3 col-lg-2 portfolio-item contactTileList" ng-repeat="contact in contactsInGroup | orderBy: 'name'">
+      <contact-tile contact="contact"></contact-tile>
     </div>
+  </div>
+
+  <div ng-show="contactsInGroup === undefined || contactsInGroup === null || contactsInGroup.length === 0">
+    No contacts in this group.
   </div>
 
 </div>

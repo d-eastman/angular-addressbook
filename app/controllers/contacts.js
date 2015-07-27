@@ -15,6 +15,5 @@ angular.module('addressBookApp')
           function() {
             alert("Could not get all contacts!");
           });
-
     }
   ]);
