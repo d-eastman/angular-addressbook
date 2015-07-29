@@ -8,8 +8,11 @@ describe("NewContactController", function() {
     id: "1a",
     name: "test person",
     phone: "555-555-1234",
-    email: "test.person@spec.com"
+    email: "test.person@spec.com",
+    groupName: "test"
   };
+
+  var fakeGroupsDataArray = [ { groupName: "test" } ];
 
   beforeEach(function() {
     module("addressBookApp");
@@ -19,9 +22,15 @@ describe("NewContactController", function() {
         deferred = q.defer();
         deferred.resolve();
         return deferred.promise;
+      },
+      getAllGroups: function() {
+        deferred = q.defer();
+        deferred.resolve(fakeGroupsDataArray);
+        return deferred.promise;
       }
     };
     spyOn(fakeContactsFactory, 'addNewContact').and.callThrough();
+    spyOn(fakeContactsFactory, 'getAllGroups').and.callThrough();
   });
 
   beforeEach(inject(function($rootScope, $controller, $q) {
