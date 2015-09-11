@@ -15,10 +15,11 @@ angular.module("addressBookApp")
             $scope.groups = response.data;
           },
           function() {
-            alert("Failed to load groups")
+            alert("Failed to load groups");
           });
 
       $scope.save = function() {
+        console.log($scope.newContact);
         contactsFactory.addNewContact($scope.newContact)
           .then(function() {
               $location.url("/contacts");

@@ -1,4 +1,4 @@
-REM STARTING REST SERVER
+REM STARTING WEB SERVER
 
 cd c:\temp\addressbookjs
 npm start

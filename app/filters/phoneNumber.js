@@ -14,5 +14,5 @@ angular.module("addressBookApp")
       } else {
         return "";
       }
-    }
+    };
   });

@@ -1,16 +1,23 @@
 <div class="contactDetailDisplay">
-    <div class="row">
-        <div class="col-md-12">
-            <view-field field-name="Name" field-value="contact.name"></view-field>
-        </div>
-        <div class="col-md-12">
-            <view-field field-name="Phone" field-value="contact.phone"></view-field>
-        </div>
-        <div class="col-md-12">
-            <view-field field-name="Email" field-value="contact.email"></view-field>
-        </div>
-        <div class="col-md-12">
-            <view-field field-name="Group" field-value="contact.groupName"></view-field>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <view-field field-name="Name" field-value="contact.name"></view-field>
     </div>
+    <div class="col-md-12">
+      <view-field field-name="Phone" field-value="contact.phone"></view-field>
+    </div>
+    <div class="col-md-12">
+      <!--GOOD-->
+      <view-field field-name="Email" field-value="contact.email"></view-field>
+      <!--GOOD-->
+
+      <!--BAD-->
+      <!--view-field field-name="Email" field-value="contact.emailAddress"></view-field-->
+      <!--BAD-->
+
+    </div>
+    <div class="col-md-12">
+      <view-field field-name="Group" field-value="contact.groupName"></view-field>
+    </div>
+  </div>
 </div>

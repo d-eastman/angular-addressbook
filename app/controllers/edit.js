@@ -15,7 +15,7 @@ angular.module("addressBookApp")
             $scope.groups = response.data;
           },
           function() {
-            alert("Failed to load groups")
+            alert("Failed to load groups");
           }).then(function() {
           contactsFactory.getContactById($routeParams.id)
             .success(function(contact) {

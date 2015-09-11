@@ -53,28 +53,34 @@
           </label>
         </div>
         <div class="col-xs-11">
+<!--GOOD-->
           <select id="groupName" name="groupName" ng-model="newContact.groupName" required>
-            <option ng-repeat="group in groups" value="{{group.name}}">{{group.name}}</option>
-          </select>
-          <img  height="18px" ng-show="newContactForm.groupName.$invalid" src="img/red_thumbs_down.png" style="opacity: 0.5;"/>
-          <span class="required" ng-show="newContactForm.groupName.$error.required" style="color: red">required</span>
-          <img  height="18px" ng-show="newContactForm.groupName.$valid" src="img/green_thumbs_up.png" style="opacity: 0.5;"/>
+<!--GOOD-->
+
+<!--BAD-->
+            <!--select id="groupName" name="groupName" ng-model="newContact.group" required-->
+<!--BAD-->
+              <option ng-repeat="group in groups" value="{{group.name}}">{{group.name}}</option>
+            </select>
+            <img  height="18px" ng-show="newContactForm.groupName.$invalid" src="img/red_thumbs_down.png" style="opacity: 0.5;"/>
+            <span class="required" ng-show="newContactForm.groupName.$error.required" style="color: red">required</span>
+            <img  height="18px" ng-show="newContactForm.groupName.$valid" src="img/green_thumbs_up.png" style="opacity: 0.5;"/>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="row">
+        <div class="col-xs-1">
+          &nbsp;
+        </div>
+        <div class="col-xs-11">
+          <button class="btn btn-primary" ng-click="save()" ng-disabled="newContactForm.$invalid" style="margin: 5px" type="submit">
+            Save
+          </button>
+          <button class="btn btn-default" ng-click="cancel()" style="margin: 5px" type="button">Cancel</button>
         </div>
       </div>
-    </fieldset>
 
-    <div class="row">
-      <div class="col-xs-1">
-        &nbsp;
-      </div>
-      <div class="col-xs-11">
-        <button class="btn btn-primary" ng-click="save()" ng-disabled="newContactForm.$invalid" style="margin: 5px" type="submit">
-          Save
-        </button>
-        <button class="btn btn-default" ng-click="cancel()" style="margin: 5px" type="button">Cancel</button>
-      </div>
-    </div>
+    </form>
 
-  </form>
-
-</div>
+  </div>

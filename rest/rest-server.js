@@ -2,6 +2,8 @@
 var express = require('express'); // call express
 var app = express(); // define our app using express
 var bodyParser = require('body-parser');
+var zlib = require('zlib');
+var logService = require("./app/logService.js");
 var contactsService = require("./app/contactsService.js");
 
 // configure app to use bodyParser()
@@ -30,9 +32,65 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-  //res.json({message: 'hooray! welcome to our api!'});
   res.json({
-    message: "welcome to the REST api"
+    name: "AddressBook REST API",
+    description: "This RESTful API provides data access for the demo Address Book application. Data is sent and returned in JSON format.",
+    resources: [{
+      endpoint: "/contacts",
+      verb: "GET",
+      purpose: "get all contacts",
+      returns: "array of contact objects"
+    }, {
+      endpoint: "/contacts",
+      verb: "POST",
+      purpose: "save new contact",
+      returns: "new contact object"
+    }, {
+      endpoint: "/contacts",
+      verb: "PUT",
+      purpose: "update contact",
+      returns: "updated contact object"
+    }, {
+      endpoint: "/contacts/:id",
+      verb: "GET",
+      purpose: "get single contact by id",
+      returns: "contact object"
+    }, {
+      endpoint: "/contacts/group/:groupName",
+      verb: "GET",
+      purpose: "get contacts in group by group name",
+      returns: "array of contact objects"
+    }, {
+      endpoint: "/contacts/:id",
+      verb: "DELETE",
+      purpose: "delete contact",
+      returns: "completion message"
+    }, {
+      endpoint: "/groups",
+      verb: "GET",
+      purpose: "get all groups",
+      returns: "array of group objects"
+    }, {
+      endpoint: "/groups",
+      verb: "POST",
+      purpose: "save new group",
+      returns: "new group object"
+    }, {
+      endpoint: "/groups",
+      verb: "PUT",
+      purpose: "update group",
+      returns: "updated group object"
+    }, {
+      endpoint: "/groups/:id",
+      verb: "DELETE",
+      purpose: "delete group",
+      returns: "confirmation message"
+    }, {
+      endpoint: "/log",
+      verb: "POST",
+      purpose: "save log message",
+      returns: "message text"
+    }]
   });
 });
 
@@ -123,6 +181,11 @@ router.get("/groups", function(req, res) {
   });
 });
 
+router.post("/log", function(req, res) {
+  logService.saveLogMessage(req.body.message, function(message) {
+    res.json(message);
+  });
+});
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api

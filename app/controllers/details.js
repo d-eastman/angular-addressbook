@@ -11,6 +11,7 @@ angular.module("addressBookApp")
       contactsFactory.getContactById($routeParams.id)
         .then(function(response) {
             $scope.contact = response.data;
+            //console.log($scope.contact);
           },
           function() {
             alert("Failed to get contact details");

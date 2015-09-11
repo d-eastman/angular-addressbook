@@ -51,4 +51,21 @@ angular.module('addressBookApp', ['ngRoute'])
       .otherwise({
         redirectTo: '/contacts'
       });
-  }]);
+  }])
+
+.run(function($rootScope, $location, appLoggingFactory) {
+  //console.log('run');
+
+  $rootScope.$on("$routeChangeStart", function(event, next, current) {
+    //DO SOME LOGGING OF SESSION ACTIVITY EACH TIME THE ROUTE CHANGES
+    var path = $location.path();
+    //console.log('routeChangeStart: ' + path);
+    appLoggingFactory.saveLogMessage(path)
+      .then(function(response) {
+          //console.log('log message saved');
+        },
+        function() {
+          //console.log('log messaged FAILED to be saved');
+        });
+  });
+});
