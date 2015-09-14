@@ -5,6 +5,23 @@ var bodyParser = require('body-parser');
 var zlib = require('zlib');
 var logService = require("./app/logService.js");
 var contactsService = require("./app/contactsService.js");
+var winston = require("winstonConfig.js");
+
+var logger = new(winston.Logger)({
+  transports: [
+    new(winston.transports.Console)({
+      level: 'warn'
+    }),
+    new(winston.transports.File)({
+      filename: 'rest-server-activity.log',
+      level: 'info',
+      json: "false",
+      maxsize: "10240"
+    })
+  ]
+});
+
+logger.info("REST SERVER STARTING UP AT " + Date.now());
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -27,6 +44,7 @@ router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   // do logging
   console.log(req.method + " " + req.url);
+  logger.info("VIEW REQUESTED: " + req.method + " " + req.url);
   next(); // make sure we go to the next routes and don't stop here
 });
 
